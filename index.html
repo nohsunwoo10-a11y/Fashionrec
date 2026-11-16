@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>갸루 언니의 착붙 OOTD & 데일리 큐레이션</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- 상단 갸루 데코 바 -->
+    <div class="status-bar-deco">
+      <span>GYARU OOTD ROOM <span class="heart-deco">💖</span></span>
+      <span id="current-date-badge">TODAY</span>
+    </div>
+
+    <!-- 로딩 오버레이 -->
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loading-gyaru">🪞✨</div>
+      <div class="loading-title">잠깐만 자기야!</div>
+      <div class="loading-sub">언니가 오늘 대박 날 코디 뒤적거리는 중... 💄</div>
+    </div>
+
+    <!-- ================== 1. 첫 화면 (Home) ================== -->
+    <section class="page-section active" id="page-home">
+      <div class="home-hero-badge">
+        <span>✨</span> 언니의 1:1 맞춤형 퍼스널 핏
+      </div>
+
+      <div class="home-character">
+        <div class="char-circle">💅</div>
+        <div class="char-sparkle sparkle-1">💖</div>
+        <div class="char-sparkle sparkle-2">✨</div>
+      </div>
+
+      <h1 class="home-title">
+        오늘 뭐 입을지 고민돼?<br>
+        <span>갸루 언니</span>가 정해줄게!
+      </h1>
+
+      <p class="home-desc">
+        오늘 날씨랑 약속만 딱 골라봐!<br>
+        언니가 기온에 딱 맞는 찰떡 코디부터 밥 메뉴, 감성 노래까지 풀코스로 싹 다 추천해 줄게 😘
+      </p>
+
+      <div class="home-features">
+        <div class="feature-item">
+          <div class="feature-icon">👗</div>
+          <div class="feature-title">상황별 풀착장</div>
+          <div class="feature-sub">상의·하의·아우터·슈즈</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌡️</div>
+          <div class="feature-title">1°C 정밀 맞춤</div>
+          <div class="feature-sub">날씨·일교차 완벽 대비</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🍜</div>
+          <div class="feature-title">착붙 메뉴 추천</div>
+          <div class="feature-sub">오늘 착장에 어울리는 식사</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎧</div>
+          <div class="feature-title">BGM & 붓기관리</div>
+          <div class="feature-sub">기분 UP 음악 & 핏 케어</div>
+        </div>
+      </div>
+
+      <div class="action-bottom" style="width: 100%;">
+        <button class="btn btn-lg" id="btn-start">
+          언니한테 코디 받으러 가기 ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- ================== 2. 입력 화면 (Input) ================== -->
+    <section class="page-section" id="page-input">
+      <div class="step-header">
+        <h2>오늘 어떤 날이야? ✨</h2>
+        <p>상세하게 알려줄수록 언니가 더 기가 막힌 핏을 뽑아줘!</p>
+      </div>
+
+      <!-- 1) 온도 슬라이더 -->
+      <div class="card" id="card-temp">
+        <div class="card-title">
+          <span>🌡️ 오늘의 기온 설정</span>
+          <span class="card-badge">필수</span>
+        </div>
+        <div class="temp-control-box">
+          <div class="temp-display-wrap">
+            <span class="temp-value-display" id="temp-display">18</span>
+            <span class="temp-unit">°C</span>
+          </div>
+          <div class="temp-comment-badge" id="temp-guide">
+            자켓, 가디건 입기 제일 좋은 환상적인 날씨!
+          </div>
+
+          <div class="slider-container">
+            <input type="range" id="temp-slider" min="-10" max="35" value="18" step="1">
+            <div class="slider-ticks">
+              <span>-10°C (혹한)</span>
+              <span>12°C</span>
+              <span>24°C</span>
+              <span>35°C (폭염)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2) 날씨 선택 -->
+      <div class="card" id="card-weather">
+        <div class="card-title">
+          <span>🌤️ 하늘 상태는 어때?</span>
+          <span class="card-badge">필수 선택</span>
+        </div>
+        <div class="chip-grid" id="weather-grid">
+          <button type="button" class="chip-btn" data-type="weather" data-value="sunny">
+            <span class="icon">☀️</span>
+            <span>화창한 맑음</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="weather" data-value="cloudy">
+            <span class="icon">⛅</span>
+            <span>선선/흐림</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="weather" data-value="rainy">
+            <span class="icon">🌧️</span>
+            <span>비 내려</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="weather" data-value="snowy">
+            <span class="icon">❄️</span>
+            <span>눈 펑펑</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="weather" data-value="windy">
+            <span class="icon">💨</span>
+            <span>바람 쌩쌩</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="weather" data-value="dusty">
+            <span class="icon">😷</span>
+            <span>미세먼지</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3) 약속 유형 선택 -->
+      <div class="card" id="card-occasion">
+        <div class="card-title">
+          <span>📍 오늘 어떤 약속이야?</span>
+          <span class="card-badge">필수 선택</span>
+        </div>
+        <div class="chip-grid" id="occasion-grid">
+          <button type="button" class="chip-btn" data-type="occasion" data-value="date">
+            <span class="icon">💘</span>
+            <span>데이트/소개팅</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="occasion" data-value="work">
+            <span class="icon">💼</span>
+            <span>출근/캠퍼스</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="occasion" data-value="friends">
+            <span class="icon">🛍️</span>
+            <span>친구 약속/카페</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="occasion" data-value="hip">
+            <span class="icon">🪩</span>
+            <span>핫플/페스티벌</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="occasion" data-value="daily">
+            <span class="icon">🧢</span>
+            <span>동네 마실/꾸안꾸</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="occasion" data-value="exercise">
+            <span class="icon">🏃‍♀️</span>
+            <span>운동/산책</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4) 원하는 스타일 무드 -->
+      <div class="card" id="card-mood">
+        <div class="card-title">
+          <span>💄 오늘 뽐내고 싶은 스타일 무드</span>
+          <span class="card-badge">필수 선택</span>
+        </div>
+        <div class="chip-grid-2 chip-grid" id="mood-grid">
+          <button type="button" class="chip-btn" data-type="mood" data-value="lovely">
+            <span class="icon">🎀</span>
+            <span>러블리 & 페미닌</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="mood" data-value="gyaru">
+            <span class="icon">🕶️</span>
+            <span>힙 & Y2K 갸루룩</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="mood" data-value="chic">
+            <span class="icon">👔</span>
+            <span>모던 시크 & 단정</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="mood" data-value="casual">
+            <span class="icon">👟</span>
+            <span>스트릿 & 캐주얼</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5) 언니의 풀코스 케어 (배고픔 & 에너지) -->
+      <div class="card" id="card-hunger">
+        <div class="card-title">
+          <span>🍽️ 지금 배고픔 & 컨디션 상태는?</span>
+          <span class="card-badge">메뉴 연동</span>
+        </div>
+        <div class="chip-grid" id="hunger-grid">
+          <button type="button" class="chip-btn" data-type="hunger" data-value="starving">
+            <span class="icon">🤤</span>
+            <span>완전 배고파!</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="hunger" data-value="light">
+            <span class="icon">🥗</span>
+            <span>가볍고 산뜻하게</span>
+          </button>
+          <button type="button" class="chip-btn" data-type="hunger" data-value="dessert">
+            <span class="icon">🍰</span>
+            <span>당 충전 디저트</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 코디 생성 CTA -->
+      <div class="action-bottom">
+        <button class="btn btn-lg" id="btn-submit">
+          언니의 찰떡 코디 완성하기 🪄
+        </button>
+      </div>
+    </section>
+
+    <!-- ================== 3. 결과 화면 (Result) ================== -->
+    <section class="page-section" id="page-result">
+      <!-- 갸루 언니 보이스 버블 -->
+      <div class="result-gyaru-bubble">
+        <div class="bubble-author">
+          <div class="bubble-avatar">💅</div>
+          <div class="bubble-meta">
+            <h3>갸루 언니의 착붙 스타일링</h3>
+            <p id="result-status-tag">💖 오늘 너 완전 인쇼 모델각이야!</p>
+          </div>
+        </div>
+        <div class="bubble-speech" id="result-speech">
+          <!-- 언니의 코디 추천 이유와 다정한 멘트 -->
+        </div>
+      </div>
+
+      <!-- 추천된 코디 아이템 카드 리스트 -->
+      <div class="card">
+        <div class="card-title">
+          <span>👗 오늘의 추천 OOTD 아이템</span>
+          <span class="card-badge" id="result-style-tag">스타일</span>
+        </div>
+        <div class="outfit-grid" id="outfit-items-container">
+          <!-- JS로 동적 생성 -->
+        </div>
+      </div>
+
+      <!-- 꼭 고려해야 하는 조건 (체크리스트) -->
+      <div class="caution-card">
+        <div class="caution-header">
+          <span>⚠️ 언니가 당부하는 오늘 필수 체크!</span>
+        </div>
+        <ul class="caution-list" id="result-caution-list">
+          <!-- JS로 동적 생성 -->
+        </ul>
+      </div>
+
+      <!-- 언니의 보너스 꿀팁 패키지 (메뉴, 노래, 운동) -->
+      <div class="bonus-care-wrap">
+        <div class="bonus-care-title">
+          <span>✨ 언니의 풀코스 추천 (메뉴·BGM·운동)</span>
+        </div>
+        <div class="bonus-care-grid">
+          <!-- 메뉴 -->
+          <div class="bonus-card">
+            <div class="bonus-icon" id="bonus-menu-icon">🍜</div>
+            <div class="bonus-content">
+              <h4>오늘 착장에 딱인 추천 메뉴 <span id="bonus-menu-tag">맛집 픽</span></h4>
+              <p id="bonus-menu-desc">따끈한 국물로 감기 예방도 하고 기분도 챙기자!</p>
+            </div>
+          </div>
+          <!-- 노래 -->
+          <div class="bonus-card">
+            <div class="bonus-icon" id="bonus-song-icon">🎧</div>
+            <div class="bonus-content">
+              <h4>걸을 때 들을 런웨이 BGM <span id="bonus-song-tag">텐션 UP</span></h4>
+              <p id="bonus-song-desc">NewJeans - Super Shy</p>
+            </div>
+          </div>
+          <!-- 운동/스트레칭 -->
+          <div class="bonus-card">
+            <div class="bonus-icon" id="bonus-workout-icon">🏃‍♀️</div>
+            <div class="bonus-content">
+              <h4>오늘의 핏 살리는 3분 케어 <span id="bonus-workout-tag">붓기 순삭</span></h4>
+              <p id="bonus-workout-desc">외출 전 종아리 림프 마사지로 다리 라인 극대화!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 다시하기 및 복사 액션 버튼 -->
+      <div class="action-bottom">
+        <button class="btn btn-lg" id="btn-restart">
+          다른 코디 다시 골라보기 🔄
+        </button>
+        <button class="btn btn-outline" id="btn-copy">
+          📋 오늘 추천 코디 클립보드에 복사하기
+        </button>
+        <div class="copy-success" id="copy-success-msg">
+          ✓ 오늘 코디 정보가 클립보드에 복사되었어!
+        </div>
+      </div>
+    </section>
+
+    <!-- 플로팅 토스트 -->
+    <div class="toast-msg" id="toast-msg">
+      <span id="toast-icon">⚠️</span>
+      <span id="toast-text">항목을 선택해줘!</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
